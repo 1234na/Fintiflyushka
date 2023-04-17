@@ -1,0 +1,14 @@
+html {
+  background-color: #ffcc99;
+}
+h1 {
+  margin: 0;
+  padding: 20px 0;
+}
+body {
+  width: 1600px;
+  margin: 0 auto;
+  background-color: #fdd5b1;
+  padding: 20px 20px 20px 20px;
+  border: 5px solid black;
+}
