@@ -1,5 +1,5 @@
-from flask import Flask
-from flask import request
+import Flask
+#from flask import request
 import sqlite3
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def post_work(username):
 
 @app.route('/reg', methods=['POST', 'GET'])
 def registration():
-    if flask.method == 'GET':
+    if Flask.method == 'GET':
         return '''<!doctype html>
                         <html lang="en">
                           <head>
@@ -63,12 +63,12 @@ def registration():
                             </div>
                           </body>
                       </html>'''
-    elif flask.method == 'POST':
-        email = flask.form.get('email')
-        username = flask.form.get('username')
-        photo = flask.form.get('file')
-        password = flask.form.get('password')
-        about = flask.form.get('about')
+    elif Flask.method == 'POST':
+        email = Flask.form.get('email')
+        username = Flask.form.get('username')
+        photo = Flask.form.get('file')
+        password = Flask.form.get('password')
+        about = Flask.form.get('about')
         
         con = sqlite3.connect("Fintiflyushka")
         cur = con.cursor()
