@@ -26,21 +26,47 @@
           border-radius: 5px;
           padding: 10px;
         }
+        .sidenav {
+          height: 100%;
+          width: 160px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #000000;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        .sidenav a {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #ffb961;
+          display: block;
+        }
+        .main {
+          margin-left: 160px;
+          font-size: 28px;
+          padding: 0px 10px;
+        }
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
       </style>
       <title>Регистрация</title>
     </head>
     <body>
+      <div class="sidenav">
+        <a href="enter">Вход</a>
+      </div>
       <h1>Форма для регистрации</h1>
       <div>
         <form class="login_form" method="post">
           <p>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
-          </p>
-          <p>
             <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Введите пароль" name="password">
           </p>
           <p>
-            <input type="text" class="form-control" id="nickname" placeholder="Придумайте никнейм" name="nickname">
+            <input type="text" class="form-control" id="username" placeholder="Придумайте никнейм" name="username">
           </p>
           <div class="form-group">
             <p><label for="about">Немного о себе</label></p>
