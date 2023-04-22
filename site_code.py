@@ -3,21 +3,24 @@ from flask import request
 import sqlite3
 
 app = Flask(__name__)
-username = None
-
 
 @app.route('/')
 @app.route('/home/<username>')
-def home(username=None):
-    return 'Это должна быть домашняя страница'
+def home(username='user0'):
+    f = open('homepage.html', 'rb')
+    result = f.read()
+    return result
+
 
 @app.route('/entrance')
 def entrance():
     return 'Выйди и зайди нормально'
 
+
 @app.route('/post/<username>')
 def post_work(username):
     pass
+
 
 @app.route('/reg', methods=['POST', 'GET'])
 def registration():
@@ -32,11 +35,14 @@ def registration():
         password = request.form.get('password')
         about = request.form.get('about')
         
-        con = sqlite3.connect("fintiflyushka_db.sqlite")
+        con = sqlite3.connect("fintiflyushka.sqlite")
         cur = con.cursor()
-        cur.execute('''INSERT INTO Users(Username,Password,Email,Extra,Photo,Photos_amount) VALUES (username, password, email, about, photo, 0)''')
+        cur.execute(f'''INSERT INTO Users(Username,Password,Email,Extra,Photo,Photos_amount) VALUES ({username}, {password}, {email}, {about}, {photo}, 0)''')
+
+        res = cur.execute('''SELECT * FROM Users''').fetchall()
+        print(res)
         
-        return "Форма отправлена"
+        return 'Отправлено'
         
     
 if __name__ == '__main__':
