@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      html {
+        background-color: #ffcc99;
+      }
+      h1 {
+        margin: 0;
+        padding: 20px 0;
+      }
+      body {
+        width: 100% - 160;
+        height: 100%;
+        margin: 0 auto;
+        background-color: #fdd5b1;
+        padding: 20px 20px 20px 20px;
+        border: 5px solid black;
+      }
+      .sidenav {
+        height: 100%;
+        width: 160px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #000000;
+        overflow-x: hidden;
+        padding-top: 20px;
+      }
+      .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #ffb961;
+        display: block;
+      }
+      .main {
+        margin-left: 160px;
+        font-size: 28px;
+        padding: 0px 10px;
+      }
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+    </style>
+    <title>Кабинет пользователя {{ username }}</title>
+  </head>
+  <body>
+    <div class="sidenav">
+      <a href="user/{{ username }}">{{ username }}</a>
+      <a href="/home/{{ username }}">На главную</a>
+      <a href="/">Выход</a>
+    </div>
+    <div class="main">
+      <h1>{{ username }}</h1>
+      <p>
+      <h2>О себе:</h2>
+      {{ about }}
+      </p>
+    </div>
+  </body>
+</html>
