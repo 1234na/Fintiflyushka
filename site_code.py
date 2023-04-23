@@ -13,9 +13,29 @@ def home(username=None):
     result = f.read()
     return result
 
-@app.route('/enter')
+@app.route('/enter', methods=['GET', 'POST'])
 def entrance():
-    return 'Выйди и зайди нормально'
+    if request.method == 'GET':
+        f = open('entrance.html', 'rb')
+        result = f.read()
+        return result
+    elif request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        con = sqlite3.connect("fintiflyushka.sqlite")
+        cur = con.cursor()
+        password_right = cur.execute(f'''SELECT Password FROM Users WHERE Username == "{username}"''').fetchall()
+        try:
+            if password_right[0][0] == password:
+                f = open('homepage.html', 'rb')
+                result = f.read()
+                return result
+            else:
+                return 'Я сам в ахуе, но пшёл вон'
+        except BaseException:
+            return 'Ошибка входа'
+
 
 @app.route('/post/<username>')
 def post_work(username):
@@ -32,7 +52,7 @@ def registration():
         password = request.form.get('password')
         about = request.form.get('about')
         
-        con = sqlite3.connect("fintiflyushka_db.sqlite")
+        con = sqlite3.connect("fintiflyushka.sqlite")
         cur = con.cursor()
         cur.execute(f'''INSERT INTO Users(Username,Password,Extra,Photos_amount) VALUES ("{username}", "{password}", "{about}", 0)''')
         
