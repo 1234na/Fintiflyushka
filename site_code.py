@@ -34,7 +34,7 @@ def entrance():
             else:
                 return 'Я сам в ахуе, но пшёл вон'
         except BaseException:
-            return 'Ошибка входа'
+            return 'Ошибка входа. Попробуйте перезайти на сайт.'
 
 
 @app.route('/post/<username>')
@@ -54,9 +54,15 @@ def registration():
         
         con = sqlite3.connect("fintiflyushka.sqlite")
         cur = con.cursor()
-        cur.execute(f'''INSERT INTO Users(Username,Password,Extra,Photos_amount) VALUES ("{username}", "{password}", "{about}", 0)''')
-        
-        return "Форма отправлена"
+        password_right = cur.execute(f'''SELECT Password FROM Users WHERE Username == "{username}"''').fetchall()
+        if password_right == []:
+            cur.execute(f'''INSERT INTO Users(Username,Password,Extra,Photos_amount) VALUES ("{username}", "{password}", "{about}", 0)''')
+            f = open('successful_reg.html', 'rb')
+            result = f.read()
+            con.commit()
+            return result
+        else:
+            return 'Данный ник уже был зарегистрирован. Попробуйте войти в аккаунт, либо придумайте другой никнейм.'
         
     
 if __name__ == '__main__':
