@@ -9,9 +9,11 @@ username = None
 @app.route('/')
 @app.route('/home/<username>')
 def home(username=None):
-    return 'Это должна быть домашняя страница'
+    f = open('homepage.html', 'rb')
+    result = f.read()
+    return result
 
-@app.route('/entrance')
+@app.route('/enter')
 def entrance():
     return 'Выйди и зайди нормально'
 
@@ -26,15 +28,13 @@ def registration():
         result = f.read()
         return result
     elif request.method == 'POST':
-        email = request.form.get('email')
         username = request.form.get('username')
-        photo = request.form.get('file')
         password = request.form.get('password')
         about = request.form.get('about')
         
         con = sqlite3.connect("fintiflyushka_db.sqlite")
         cur = con.cursor()
-        cur.execute('''INSERT INTO Users(Username,Password,Email,Extra,Photo,Photos_amount) VALUES (username, password, email, about, photo, 0)''')
+        cur.execute(f'''INSERT INTO Users(Username,Password,Extra,Photos_amount) VALUES ("{username}", "{password}", "{about}", 0)''')
         
         return "Форма отправлена"
         
