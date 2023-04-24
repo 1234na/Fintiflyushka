@@ -47,30 +47,29 @@
       }
 
     </style>
-      <title>Регистрация</title>
+      <title>Опубликовать фото</title>
     </head>
     <body>
+    <main>
       <div class="sidenav">
-        <a href="enter">Вход</a>
-        <a href="/">На главную</a>
+        <a href="/user/{{ username }}">{{ username }}</a>
+        <a href="/home/{{ username }}">На главную</a>
+        <a href="/post/{{ username }}">Опубликовать фото</a>
+        <a href="/">Выход</a>
       </div>
-      <h1>Форма для регистрации</h1>
-      <div>
+      <div class="main">
+      <h1>Создайте новую публикацию</h1>
         <form class="login_form" method="post">
-          <p>
-            <input type="text" class="form-control" id="username" placeholder="Придумайте никнейм" name="username">
-          </p>
-          <p>
-            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Введите пароль" name="password">
-          </p>
+          <input type="file" class="form-control" id="filename" placeholder="Выберите файл" name="filename">
           <div class="form-group">
-            <p><label for="about">Немного о себе</label></p>
+            <p><label for="about">Придумайте описание для фото:</label></p>
             <textarea class="form-control" id="about" rows="3" name="about"></textarea>
           </div>
           <p>
-            <button type="submit" class="btn btn-primary">Подтвердить регистрацию</button>
+            <button type="submit" class="btn btn-primary">Опубликовать</button>
           </p>
         </form>
       </div>
+    </main>
     </body>
 </html>

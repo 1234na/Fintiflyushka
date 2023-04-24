@@ -11,8 +11,7 @@
         padding: 20px 0;
       }
       body {
-        width: 100% - 200;
-        height: 100%;
+        width: 100% - 160px;
         margin: 0 auto;
         background-color: #fdd5b1;
         padding: 20px 20px 20px 20px;
@@ -20,7 +19,7 @@
       }
       .sidenav {
         height: 100%;
-        width: 200px;
+        width: 160px;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -37,7 +36,7 @@
         display: block;
       }
       .main {
-        margin-left: 200px;
+        margin-left: 160px;
         font-size: 28px;
         padding: 0px 10px;
       }
@@ -46,21 +45,17 @@
       }
 
     </style>
-    <title>Кабинет пользователя {{ username }}</title>
+    <title>Успешная публикация</title>
   </head>
   <body>
     <div class="sidenav">
-      <a href="user/{{ username }}">{{ username }}</a>
-      <a href="/home/{{ username }}">На главную</a>
-      <a href="/post/{{ username }}">Опубликовать фото</a>
-      <a href="/">Выход</a>
+        <a href="/user/{{ username }}">{{ username }}</a>
+        <a href="/home/{{ username }}">На главную</a>
+        <a href="/post/{{ username }}">Опубликовать фото</a>
+        <a href="/">Выход</a>
     </div>
     <div class="main">
-      <h1>{{ username }}</h1>
-      <p>
-      <h2>О себе:</h2>
-      {{ about }}
-      </p>
+      <h1>Поздравляю, вы успешно опубликовали фото!</h1>
     </div>
   </body>
 </html>

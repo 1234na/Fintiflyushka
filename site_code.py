@@ -46,9 +46,24 @@ def entrance():
             return 'Ошибка входа. Попробуйте перезайти на сайт.'
 
 
-@app.route('/post/<username>')
+@app.route('/post/<username>', methods=['POST', 'GET'])
 def post_work(username):
-    pass
+    if request.method == 'GET':
+        return render_template('post_foto.html', username=username)
+    elif request.method == 'POST':
+        text = request.form.get('about')
+        filename = request.form.get('filename')
+        con = sqlite3.connect("fintiflyushka.sqlite")
+        cur = con.cursor()
+
+        cur.execute(f'''INSERT INTO Pictures(filename,author,text) VALUES ("{filename}", "{username}", "{text}")''')
+
+        num = 1
+        print(cur.execute(f'''UPDATE Users SET Photos_amount = "{num}" WHERE Username = "{username}"''').fetchall())
+
+        con.commit()
+        return render_template('successful_posted.html', username=username)
+
 
 @app.route('/reg', methods=['POST', 'GET'])
 def registration():

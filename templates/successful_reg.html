@@ -11,7 +11,8 @@
         padding: 20px 0;
       }
       body {
-        width: 100% - 160px;
+        width: 100% - 200;
+        height: 100%;
         margin: 0 auto;
         background-color: #fdd5b1;
         padding: 20px 20px 20px 20px;
@@ -19,7 +20,7 @@
       }
       .sidenav {
         height: 100%;
-        width: 160px;
+        width: 200px;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -36,7 +37,7 @@
         display: block;
       }
       .main {
-        margin-left: 160px;
+        margin-left: 200px;
         font-size: 28px;
         padding: 0px 10px;
       }
@@ -51,6 +52,7 @@
     <div class="sidenav">
       <a href="/user/{{ username }}">{{ username }}</a>
       <a href="/home/{{ username }}">На главную</a>
+      <a href="/post/{{ username }}">Опубликовать фото</a>
       <a href="/">Выход</a>
     </div>
     <div class="main">
