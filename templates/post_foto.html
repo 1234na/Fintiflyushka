@@ -55,12 +55,13 @@
         <a href="/user/{{ username }}">{{ username }}</a>
         <a href="/home/{{ username }}">На главную</a>
         <a href="/post/{{ username }}">Опубликовать фото</a>
+        <a href="/pictures">Смотреть картинки</a>
         <a href="/">Выход</a>
       </div>
       <div class="main">
       <h1>Создайте новую публикацию</h1>
         <form class="login_form" method="post">
-          <input type="file" class="form-control" id="filename" placeholder="Выберите файл" name="filename">
+          <input type="text" class="form-control" id="filename" placeholder="Введите URL картинки" name="filename">
           <div class="form-group">
             <p><label for="about">Придумайте описание для фото:</label></p>
             <textarea class="form-control" id="about" rows="3" name="about"></textarea>
