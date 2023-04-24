@@ -22,6 +22,13 @@ def userpage(name):
 
 @app.route('/home/<name>')
 def home(name):
+    con = sqlite3.connect("fintiflyushka.sqlite")
+    cur = con.cursor()
+    to_post = cur.execute(f'''SELECT * FROM Pictures''').fetchall()
+    photos = ''
+    for el in to_post:
+        photos += f'''<img src="{el[0]}" alt="photo by {el[1]}">'''
+        photos += f'<p>{el[1]}: {el[2]}</p>'
     return render_template('homepage.html', username=name)
 
 @app.route('/enter', methods=['GET', 'POST'])
@@ -58,8 +65,8 @@ def post_work(username):
 
         cur.execute(f'''INSERT INTO Pictures(filename,author,text) VALUES ("{filename}", "{username}", "{text}")''')
 
-        num = 1
-        print(cur.execute(f'''UPDATE Users SET Photos_amount = "{num}" WHERE Username = "{username}"''').fetchall())
+        num = int(cur.execute(f'''SELECT Photos_amount FROM Users WHERE Username = "{username}"''').fetchall()[0][0]) + 1
+        cur.execute(f'''UPDATE Users SET Photos_amount = "{num}" WHERE Username = "{username}"''').fetchall()
 
         con.commit()
         return render_template('successful_posted.html', username=username)
